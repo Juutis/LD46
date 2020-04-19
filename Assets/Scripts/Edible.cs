@@ -16,10 +16,23 @@ public class Edible : MonoBehaviour
     [SerializeField]
     public bool UseExtendedEatRange = false;
 
+    [SerializeField]
+    bool IsCake = false;
+    [SerializeField]
+    bool IsSausage = false;
+
     // Start is called before the first frame update
     void Start()
     {
         EdibleManager.GetInstance().Add(this);
+        if (IsCake)
+        {
+            EdibleManager.GetInstance().AddCake();
+        }
+        if (IsSausage)
+        {
+            EdibleManager.GetInstance().AddSausage();
+        }
     }
 
     // Update is called once per frame
@@ -39,6 +52,15 @@ public class Edible : MonoBehaviour
 
     public void Eat()
     {
+        if (IsCake)
+        {
+            EdibleManager.GetInstance().AddCakeEaten();
+        }
+        if (IsSausage)
+        {
+            EdibleManager.GetInstance().AddSausageEaten();
+        }
+
         if (DestroyOnEat)
         {
             Destroy(gameObject);

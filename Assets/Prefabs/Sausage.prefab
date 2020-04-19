@@ -45,6 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HungerRestored: 10
+  LevelEndTrigger: {fileID: 0}
+  DestroyOnEat: 1
+  UseExtendedEatRange: 0
+  IsCake: 0
+  IsSausage: 1
 --- !u!1001 &6731383645776722827
 PrefabInstance:
   m_ObjectHideFlags: 0

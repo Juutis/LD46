@@ -1,12 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EdibleManager : MonoBehaviour
 {
     List<Edible> Edibles = new List<Edible>();
 
     private static EdibleManager INSTANCE;
+
+    public int Cakes = 0, CakesEaten;
+    public int Sausages = 0, SausagesEaten;
+
+    [SerializeField]
+    Text CakesText;
+
+    [SerializeField]
+    Text SausagesText;
+
+    public void AddCake()
+    {
+        Cakes++;
+        UpdateHud();
+    }
+
+    public void AddCakeEaten()
+    {
+        CakesEaten++;
+        UpdateHud();
+    }
+
+    public void AddSausage()
+    {
+        Sausages++;
+        UpdateHud();
+    }
+
+    public void AddSausageEaten()
+    {
+        SausagesEaten++;
+        UpdateHud();
+    }
+    
+    private void UpdateHud()
+    {
+        CakesText.text = CakesEaten + " / " + Cakes;
+        SausagesText.text = SausagesEaten + " / " + Sausages;
+    }
 
     void Awake()
     {

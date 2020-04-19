@@ -369,6 +369,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5efeeb892aa852641b538a4180e7a430, type: 3}
   ShowTutorial: 1
   Alive: 1
+  PukePrefab: {fileID: 6114848191251324275, guid: b7a7af89d9a3bfd4993210d8369b5576,
+    type: 3}
 --- !u!114 &1119912640856975361
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -96,8 +96,8 @@ public class Dog : MonoBehaviour
     {
         if (Alive)
         {
-            InputX = Input.GetAxis("Horizontal");
-            InputY = Input.GetAxis("Vertical");
+            InputX = HybridInput.GetAxis("Horizontal");
+            InputY = HybridInput.GetAxis("Vertical");
 
             var input = new Vector3(InputX, 0.0f, InputY);
 
@@ -202,13 +202,21 @@ public class Dog : MonoBehaviour
 
     public void Poisoned()
     {
-        Hunger -= 20f;
+        Hunger -= 15f;
         Instantiate(VomitEffect, VomitRoot);
         PlayRandomSound(pukes);
+        GameObject puke = Instantiate(PukePrefab);
+        var pos = VomitRoot.position;
+        pos.y = 0.3f;
+        puke.transform.position = pos;
     }
 
     public void PlayRandomSound(AudioClip[] clips)
     {
         audioSrc.PlayOneShot(clips[Random.Range(0, clips.Length)]);
     }
+
+    
+    [SerializeField]
+    GameObject PukePrefab;
 }
