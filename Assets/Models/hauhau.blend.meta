@@ -14,7 +14,7 @@ ModelImporter:
     second: Idle
   - first:
       74: -6389982316250476701
-    second: Leg1
+    second: RootMotion
   - first:
       74: -8502185856248634111
     second: Leg2
@@ -24,6 +24,24 @@ ModelImporter:
   - first:
       74: 7501937803213740051
     second: Leg4
+  - first:
+      74: 7748559194217966111
+    second: Chomp
+  - first:
+      74: 1517140919514353064
+    second: Sniff
+  - first:
+      74: -2202746629321128216
+    second: Sniff2
+  - first:
+      74: -6389982316250476701
+    second: Leg1
+  - first:
+      74: 4999637841099583098
+    second: RootMotion
+  - first:
+      74: -4630339522487117836
+    second: Die
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -119,10 +137,12 @@ ModelImporter:
         weight: 0
       - path: Armature/Root/Bone/Neck
         weight: 0
-      - path: Armature/Root/Bone/Neck/Head
-        weight: 1
-      - path: Armature/Root/Bone/Neck/Head/Jaw
-        weight: 1
+      - path: Armature/Root/Bone/Neck/NeckRotate
+        weight: 0
+      - path: Armature/Root/Bone/Neck/NeckRotate/Head
+        weight: 0
+      - path: Armature/Root/Bone/Neck/NeckRotate/Head/Jaw
+        weight: 0
       - path: Armature/Root/Bone_004
         weight: 0
       - path: Armature/Root/Bone_004/Tail
@@ -593,6 +613,426 @@ ModelImporter:
         weight: 1
       - path: Cube
         weight: 0
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Chomp
+      takeName: Default Take
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 47
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 0
+      - path: Armature/Root/Body
+        weight: 0
+      - path: Armature/Root/Bone
+        weight: 0
+      - path: Armature/Root/Bone/Neck
+        weight: 0
+      - path: Armature/Root/Bone/Neck/NeckRotate
+        weight: 0
+      - path: Armature/Root/Bone/Neck/NeckRotate/Head
+        weight: 1
+      - path: Armature/Root/Bone/Neck/NeckRotate/Head/Jaw
+        weight: 1
+      - path: Armature/Root/Bone_004
+        weight: 0
+      - path: Armature/Root/Bone_004/Tail
+        weight: 0
+      - path: Armature/Root/Bone_004/Tail/Tail2
+        weight: 0
+      - path: Armature/Root/Bone_004/Tail/Tail2/Tail3
+        weight: 0
+      - path: Armature/Root/Root_001
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004/Root_005
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004/Root_005/Root_006
+        weight: 0
+      - path: Armature/Root/Root_007
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010/Root_011
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010/Root_011/Root_012
+        weight: 0
+      - path: Armature/Root/Root_013
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016/Root_017
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016/Root_017/Root_018
+        weight: 0
+      - path: Armature/Root/Root_019
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022/Root_023
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022/Root_023/Root_024
+        weight: 0
+      - path: Cube
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Sniff
+      takeName: Default Take
+      internalID: 0
+      firstFrame: 50
+      lastFrame: 73
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 0
+      - path: Armature/Root/Body
+        weight: 0
+      - path: Armature/Root/Bone
+        weight: 0
+      - path: Armature/Root/Bone/Neck
+        weight: 1
+      - path: Armature/Root/Bone/Neck/NeckRotate
+        weight: 0
+      - path: Armature/Root/Bone/Neck/NeckRotate/Head
+        weight: 1
+      - path: Armature/Root/Bone/Neck/NeckRotate/Head/Jaw
+        weight: 1
+      - path: Armature/Root/Bone_004
+        weight: 0
+      - path: Armature/Root/Bone_004/Tail
+        weight: 0
+      - path: Armature/Root/Bone_004/Tail/Tail2
+        weight: 0
+      - path: Armature/Root/Bone_004/Tail/Tail2/Tail3
+        weight: 0
+      - path: Armature/Root/Root_001
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004/Root_005
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004/Root_005/Root_006
+        weight: 0
+      - path: Armature/Root/Root_007
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010/Root_011
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010/Root_011/Root_012
+        weight: 0
+      - path: Armature/Root/Root_013
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016/Root_017
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016/Root_017/Root_018
+        weight: 0
+      - path: Armature/Root/Root_019
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022/Root_023
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022/Root_023/Root_024
+        weight: 0
+      - path: Cube
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: RootMotion
+      takeName: Default Take
+      internalID: 0
+      firstFrame: -1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body
+        weight: 0
+      - path: Armature/Root/Bone
+        weight: 0
+      - path: Armature/Root/Bone/Neck
+        weight: 0
+      - path: Armature/Root/Bone/Neck/NeckRotate
+        weight: 0
+      - path: Armature/Root/Bone/Neck/NeckRotate/Head
+        weight: 0
+      - path: Armature/Root/Bone/Neck/NeckRotate/Head/Jaw
+        weight: 0
+      - path: Armature/Root/Bone_004
+        weight: 0
+      - path: Armature/Root/Bone_004/Tail
+        weight: 0
+      - path: Armature/Root/Bone_004/Tail/Tail2
+        weight: 0
+      - path: Armature/Root/Bone_004/Tail/Tail2/Tail3
+        weight: 0
+      - path: Armature/Root/Root_001
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004/Root_005
+        weight: 0
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004/Root_005/Root_006
+        weight: 0
+      - path: Armature/Root/Root_007
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010/Root_011
+        weight: 0
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010/Root_011/Root_012
+        weight: 0
+      - path: Armature/Root/Root_013
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016/Root_017
+        weight: 0
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016/Root_017/Root_018
+        weight: 0
+      - path: Armature/Root/Root_019
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022/Root_023
+        weight: 0
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022/Root_023/Root_024
+        weight: 0
+      - path: Cube
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Die
+      takeName: Default Take
+      internalID: 0
+      firstFrame: 80
+      lastFrame: 103
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Body
+        weight: 1
+      - path: Armature/Root/Bone
+        weight: 1
+      - path: Armature/Root/Bone/Neck
+        weight: 1
+      - path: Armature/Root/Bone/Neck/NeckRotate
+        weight: 0
+      - path: Armature/Root/Bone/Neck/NeckRotate/Head
+        weight: 1
+      - path: Armature/Root/Bone/Neck/NeckRotate/Head/Jaw
+        weight: 1
+      - path: Armature/Root/Bone_004
+        weight: 1
+      - path: Armature/Root/Bone_004/Tail
+        weight: 1
+      - path: Armature/Root/Bone_004/Tail/Tail2
+        weight: 1
+      - path: Armature/Root/Bone_004/Tail/Tail2/Tail3
+        weight: 1
+      - path: Armature/Root/Root_001
+        weight: 1
+      - path: Armature/Root/Root_001/Root_002
+        weight: 1
+      - path: Armature/Root/Root_001/Root_002/Root_003
+        weight: 1
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004
+        weight: 1
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004/Root_005
+        weight: 1
+      - path: Armature/Root/Root_001/Root_002/Root_003/Root_004/Root_005/Root_006
+        weight: 1
+      - path: Armature/Root/Root_007
+        weight: 1
+      - path: Armature/Root/Root_007/Root_008
+        weight: 1
+      - path: Armature/Root/Root_007/Root_008/Root_009
+        weight: 1
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010
+        weight: 1
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010/Root_011
+        weight: 1
+      - path: Armature/Root/Root_007/Root_008/Root_009/Root_010/Root_011/Root_012
+        weight: 1
+      - path: Armature/Root/Root_013
+        weight: 1
+      - path: Armature/Root/Root_013/Root_014
+        weight: 1
+      - path: Armature/Root/Root_013/Root_014/Root_015
+        weight: 1
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016
+        weight: 1
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016/Root_017
+        weight: 1
+      - path: Armature/Root/Root_013/Root_014/Root_015/Root_016/Root_017/Root_018
+        weight: 1
+      - path: Armature/Root/Root_019
+        weight: 1
+      - path: Armature/Root/Root_019/Root_020
+        weight: 1
+      - path: Armature/Root/Root_019/Root_020/Root_021
+        weight: 1
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022
+        weight: 1
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022/Root_023
+        weight: 1
+      - path: Armature/Root/Root_019/Root_020/Root_021/Root_022/Root_023/Root_024
+        weight: 1
+      - path: Cube
+        weight: 1
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0

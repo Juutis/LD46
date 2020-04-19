@@ -21,46 +21,90 @@ public class Head : MonoBehaviour
     float EatRange = 0.5f;
 
     Dog dog;
+    Animator anim;
+
+    Quaternion origRootRotation;
+
+    private float munchTimer = 0.0f;
+
+    float eatTimer = 0.0f;
+
+    [SerializeField]
+    AudioClip[] munches;
 
     // Start is called before the first frame update
     void Start()
     {
         dog = GetComponent<Dog>();
+        anim = GetComponentInChildren<Animator>();
+        origRootRotation = RootBone.localRotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Edible closestEdible = GetClosestEdible();
-
-        if (closestEdible != null)
+        if (dog.Alive)
         {
-            var targetDir = closestEdible.transform.position - RootBone.position;
+            Edible closestEdible = GetClosestEdible();
 
-            float targetAngle = Vector3.Angle(targetDir, Limiter.forward);
-            Debug.DrawLine(Limiter.position, Limiter.position + Limiter.forward * 10);
-            if (targetAngle > MaxAngle)
+
+            if (closestEdible != null)
             {
-                targetDir = Vector3.RotateTowards(Limiter.forward, targetDir, Mathf.Deg2Rad * MaxAngle, 100.0f);
-                Debug.Log(targetAngle);
-            }
+                if (DistanceTo(closestEdible) < 20f)
+                {
+                    if (munchTimer < Time.time)
+                    {
+                        dog.PlayRandomSound(munches);
+                        munchTimer = Time.time + 0.2f + Random.Range(0.0f, 0.1f);
+                    }
 
-            Debug.Log(targetDir);
+                    anim.SetLayerWeight(anim.GetLayerIndex("Chomp"), 1.0f);
+                    anim.SetLayerWeight(anim.GetLayerIndex("Sniff"), 0.0f);
 
-            var currentDir = -RootBone.right;
+                    var targetDir = closestEdible.transform.position - RootBone.position;
 
-            var diffHoriz =- Vector2.SignedAngle(new Vector2(currentDir.x, currentDir.z), new Vector2(targetDir.x, targetDir.z));
+                    float targetAngle = Vector3.Angle(targetDir, Limiter.forward);
+                    if (targetAngle > MaxAngle)
+                    {
+                        targetDir = Vector3.RotateTowards(Limiter.forward, targetDir, Mathf.Deg2Rad * MaxAngle, 100.0f);
+                    }
+
+                    var currentDir = -RootBone.right;
+
+                    var diffHoriz =- Vector2.SignedAngle(new Vector2(currentDir.x, currentDir.z), new Vector2(targetDir.x, targetDir.z));
             
-            RootBone.Rotate(Vector3.up, diffHoriz, Space.World);
+                    if (Mathf.Abs(diffHoriz) > 0.1f)
+                    {
+                        RootBone.Rotate(Vector3.up, diffHoriz, Space.World);
+                    }
 
-            var diffVert = Vector3.SignedAngle(-RootBone.right, targetDir, RootBone.up);
-        
-            RootBone.Rotate(Vector3.up, diffVert, Space.Self);
-        
-            if (Vector3.Distance(MouthBone.position, closestEdible.transform.position) < EatRange)
-            {
-                dog.Eat(closestEdible);
+                    var diffVert = Vector3.SignedAngle(-RootBone.right, targetDir, RootBone.up);
+
+                    if (Mathf.Abs(diffVert) > 0.1f)
+                    {
+                        RootBone.Rotate(Vector3.up, diffVert, Space.Self);
+                    }
+
+                    var eatRange = closestEdible.UseExtendedEatRange ? 6.0f : EatRange;
+
+                    if (Vector3.Distance(MouthBone.position, closestEdible.transform.position) < eatRange)
+                    {
+                        if (eatTimer < Time.time)
+                        {
+                            dog.Eat(closestEdible);
+                            eatTimer = Time.time + 0.2f;
+                            munchTimer = Time.time + 0.2f;
+                        }
+                    }
+                }
+                else
+                {
+                    anim.SetLayerWeight(anim.GetLayerIndex("Chomp"), 0.0f);
+                    anim.SetLayerWeight(anim.GetLayerIndex("Sniff"), 1.0f);
+                    RootBone.localRotation = origRootRotation;
+                }
             }
+
         }
     }
 

@@ -25,12 +25,38 @@ public class Dog : MonoBehaviour
     [SerializeField]
     Transform VomitRoot;
 
+    [SerializeField]
+    DogUI dogUI;
+    
+    AudioSource audioSrc;
+
+    [SerializeField]
+    AudioClip[] eats;
+
+    [SerializeField]
+    AudioClip[] pukes;
+
+    [SerializeField]
+    AudioClip[] deaths;
+
+    [SerializeField]
+    AudioClip[] footSteps;
+
+    [SerializeField]
+    bool ShowTutorial = true;
+
     float InputX, InputY;
 
     Rigidbody rb;
     Animator anim;
 
     float Hunger = 90;
+
+    public bool Alive = true;
+
+    Head head;
+
+    float footStepTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -43,51 +69,114 @@ public class Dog : MonoBehaviour
         anim.Play("Leg2", anim.GetLayerIndex("Leg2"));
         anim.Play("Leg3", anim.GetLayerIndex("Leg3"));
         anim.Play("Leg4", anim.GetLayerIndex("Leg4"));
+
+        if (ShowTutorial)
+        {
+            Invoke("LoveSausages", 3.0f);
+            Invoke("LoveCakes", 10.0f);
+        }
+
+        audioSrc = GetComponent<AudioSource>();
+    }
+
+    public void LoveSausages()
+    {
+        dogUI.ShowSausageLove();
+    }
+
+    public void LoveCakes()
+    {
+        dogUI.ShowCakeLove();
     }
 
     // Update is called once per frame
     void Update()
     {
-        InputX = Input.GetAxis("Horizontal");
-        InputY = Input.GetAxis("Vertical");
+        if (Alive)
+        {
+            InputX = Input.GetAxis("Horizontal");
+            InputY = Input.GetAxis("Vertical");
 
-        if (Hunger > 0.0f)
-        {
-            Hunger -= Time.deltaTime * HungerDecayRate;
-        }
-        else
-        {
-            Die();
-        }
-        float bodyScale = Hunger / 100f + 0.1f;
-        Body.localScale = new Vector3(bodyScale, bodyScale, bodyScale);
+            if (Hunger > 0.0f)
+            {
+                Hunger -= Time.deltaTime * HungerDecayRate;
+            }
+            else
+            {
+                Die();
+            }
+            float bodyScale = Hunger / 100f + 0.1f;
+            Body.localScale = new Vector3(bodyScale, bodyScale, bodyScale);
 
-        if (rb.velocity.magnitude > 0.1f)
-        {
-            var horizDiff = Vector3.SignedAngle(Model.forward, rb.velocity, Vector3.up);
-            Model.Rotate(Vector3.up, horizDiff);
-            anim.SetFloat("LegSpeed", rb.velocity.magnitude / MoveSpeed);
-        } else
-        {
-            anim.SetFloat("LegSpeed", 0.0f);
-        }
+            var horizSpeed = rb.velocity;
+            horizSpeed.y = 0.0f;
 
-        Debug.DrawLine(Model.transform.position, Model.transform.position + Model.transform.forward);
+            if (horizSpeed.magnitude > 0.1f)
+            {
+                var horizDiff = Vector3.SignedAngle(Model.forward, rb.velocity, Vector3.up);
+                Model.Rotate(Vector3.up, horizDiff);
+                anim.SetFloat("LegSpeed", rb.velocity.magnitude / MoveSpeed);
+
+                if (footStepTimer < Time.time)
+                {
+                    PlayRandomSound(footSteps);
+                    footStepTimer = Time.time + 0.15f + Random.Range(0.0f, 0.1f);
+                }
+            }
+            else
+            {
+                anim.SetFloat("LegSpeed", 0.0f);
+            }
+        }
 
     }
 
     void FixedUpdate()
     {
-        rb.velocity = MoveSpeed * new Vector3(InputX, 0.0f, InputY);
+        var vertVelocity = rb.velocity.y;
+        var moveDir = new Vector3(InputX, 0.0f, InputY);
+        if (moveDir.magnitude > 1.0f)
+        {
+            moveDir.Normalize();
+        }
+        rb.velocity = MoveSpeed * moveDir + new Vector3(0f, vertVelocity, 0f);
     }
 
     public void Die()
     {
+        anim.SetLayerWeight(anim.GetLayerIndex("Leg1"), 0.0f);
+        anim.SetLayerWeight(anim.GetLayerIndex("Leg2"), 0.0f);
+        anim.SetLayerWeight(anim.GetLayerIndex("Leg3"), 0.0f);
+        anim.SetLayerWeight(anim.GetLayerIndex("Leg4"), 0.0f);
+        anim.SetLayerWeight(anim.GetLayerIndex("Sniff"), 0.0f);
+        anim.SetLayerWeight(anim.GetLayerIndex("Chomp"), 0.0f);
+        anim.SetLayerWeight(anim.GetLayerIndex("Root"), 0.0f);
+        anim.SetBool("Alive", false);
+        InputX = 0.0f;
+        InputY = 0.0f;
+        Alive = false;
+        PlayRandomSound(deaths);
+        Invoke("ShowDeath", 1.0f);
+    }
 
+    public void ShowWin()
+    {
+        dogUI.ShowWin();
+    }
+
+    public void ShowDeath()
+    {
+        dogUI.ShowDead();
     }
 
     public void Eat(Edible edible)
     {
+        if (!edible.DestroyOnEat)
+        {
+            ShowWin();
+        }
+
+        PlayRandomSound(eats);
         edible.Eat();
 
         if (!edible.isPoison())
@@ -110,5 +199,11 @@ public class Dog : MonoBehaviour
     {
         Hunger -= 20f;
         Instantiate(VomitEffect, VomitRoot);
+        PlayRandomSound(pukes);
+    }
+
+    public void PlayRandomSound(AudioClip[] clips)
+    {
+        audioSrc.PlayOneShot(clips[Random.Range(0, clips.Length)]);
     }
 }

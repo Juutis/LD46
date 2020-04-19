@@ -7,6 +7,15 @@ public class Edible : MonoBehaviour
     [SerializeField]
     public float HungerRestored = 50.0f;
 
+    [SerializeField]
+    LevelEnd LevelEndTrigger;
+
+    [SerializeField]
+    public bool DestroyOnEat = true;
+
+    [SerializeField]
+    public bool UseExtendedEatRange = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +31,18 @@ public class Edible : MonoBehaviour
     void OnDestroy()
     {
         EdibleManager.GetInstance().Remove(this);
+        if (LevelEndTrigger != null)
+        {
+            LevelEndTrigger.Trigger();
+        }
     }
 
     public void Eat()
     {
-        Destroy(gameObject);
+        if (DestroyOnEat)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public bool isPoison()
