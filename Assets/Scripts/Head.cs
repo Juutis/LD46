@@ -32,6 +32,8 @@ public class Head : MonoBehaviour
     [SerializeField]
     AudioClip[] munches;
 
+    float HeadTurnSpeed = 720;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,14 +77,16 @@ public class Head : MonoBehaviour
             
                     if (Mathf.Abs(diffHoriz) > 0.1f)
                     {
-                        RootBone.Rotate(Vector3.up, diffHoriz, Space.World);
+                        float amount = Mathf.Sign(diffHoriz) * Mathf.Min(Mathf.Abs(diffHoriz), HeadTurnSpeed * Time.deltaTime);
+                        RootBone.Rotate(Vector3.up, amount, Space.World);
                     }
 
                     var diffVert = Vector3.SignedAngle(-RootBone.right, targetDir, RootBone.up);
 
                     if (Mathf.Abs(diffVert) > 0.1f)
                     {
-                        RootBone.Rotate(Vector3.up, diffVert, Space.Self);
+                        float amount = Mathf.Sign(diffVert) * Mathf.Min(Mathf.Abs(diffVert), HeadTurnSpeed * Time.deltaTime);
+                        RootBone.Rotate(Vector3.up, amount, Space.Self);
                     }
 
                     var eatRange = closestEdible.UseExtendedEatRange ? 6.0f : EatRange;

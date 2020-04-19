@@ -10,13 +10,11 @@ public class DontDestroy : MonoBehaviour
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("music");
 
-        Debug.Log(objs);
-
         if (objs.Length > 1)
         {
             Destroy(this.gameObject);
         }
-        Debug.Log("Initializing!");
+
         DontDestroyOnLoad(gameObject);
     }
 

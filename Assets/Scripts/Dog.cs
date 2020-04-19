@@ -58,6 +58,8 @@ public class Dog : MonoBehaviour
 
     float footStepTimer = 0f;
 
+    float TurnSpeed = 720f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +99,8 @@ public class Dog : MonoBehaviour
             InputX = Input.GetAxis("Horizontal");
             InputY = Input.GetAxis("Vertical");
 
+            var input = new Vector3(InputX, 0.0f, InputY);
+
             if (Hunger > 0.0f)
             {
                 Hunger -= Time.deltaTime * HungerDecayRate;
@@ -108,14 +112,15 @@ public class Dog : MonoBehaviour
             float bodyScale = Hunger / 100f + 0.1f;
             Body.localScale = new Vector3(bodyScale, bodyScale, bodyScale);
 
-            var horizSpeed = rb.velocity;
+            var horizSpeed = input;
             horizSpeed.y = 0.0f;
 
             if (horizSpeed.magnitude > 0.1f)
             {
-                var horizDiff = Vector3.SignedAngle(Model.forward, rb.velocity, Vector3.up);
-                Model.Rotate(Vector3.up, horizDiff);
-                anim.SetFloat("LegSpeed", rb.velocity.magnitude / MoveSpeed);
+                var horizDiff = Vector3.SignedAngle(Model.forward, horizSpeed, Vector3.up);
+                float amount = Mathf.Sign(horizDiff) * Mathf.Min(Mathf.Abs(horizDiff), TurnSpeed * Time.deltaTime);
+                Model.Rotate(Vector3.up, amount);
+                anim.SetFloat("LegSpeed", Mathf.Clamp(horizSpeed.magnitude, 0.0f, 1.0f));
 
                 if (footStepTimer < Time.time)
                 {
